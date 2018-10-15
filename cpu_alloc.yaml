@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: cpu-alloc
+spec:
+  selector:
+    matchLabels:
+      name: cpu-alloc
+  template:
+    metadata:
+      labels:
+        name: cpu-alloc
+    spec:
+      containers:
+      - name: centoscontainer
+        image: registry.hundsun.com/hcs/cpu_alloc:0.1
+        command:
+        - /cpu_alloc
+        - "-n"
+        - "2"
+        - "-d"
+        - "3600"
